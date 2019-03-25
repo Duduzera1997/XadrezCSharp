@@ -1,7 +1,7 @@
 ﻿
 namespace tabuleiro
 {
-    class Peca
+    abstract class Peca
     {   
         // Atributos com Encapsulamento;
         public Posicao posicao { get; set; }
@@ -24,5 +24,9 @@ namespace tabuleiro
         {
             this.qtdMovimentos++;
         }
+
+        // Método Abstrato;
+        public abstract bool[,] movimentosPossiveis();
+        
     }
 }
