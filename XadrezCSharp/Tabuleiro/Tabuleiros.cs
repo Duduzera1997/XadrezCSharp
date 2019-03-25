@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using exceptions;
 
 namespace tabuleiro
 {
@@ -26,11 +27,47 @@ namespace tabuleiro
             return pecas[linha, coluna];
         }
 
+        // Sobrecarga do método peça;
+        public Peca peca(Posicao posicao)
+        {
+            return pecas[posicao.linha, posicao.coluna];
+        }
+
+        // Método para verificar se existe uma peça naquela posição;
+        public bool existePeca(Posicao posicao)
+        {
+            validarPosicao(posicao);
+            return peca(posicao) != null;
+        }
+
         // Método para inserir uma Peça no Tabuleiro;
         public void colocarPeca(Peca peca, Posicao posicao)
         {
+            if (existePeca(posicao))
+            {
+                throw new TabuleiroException("Já existe uma peça nesta posição!");
+            }
             pecas[posicao.linha, posicao.coluna] = peca;
             peca.posicao = posicao;
+        }
+
+        // Método para verificar se a posição informada é válida de acordo com o tamanho do tabuleiro.
+        public bool posicaoValida(Posicao posicao)
+        {
+            if (posicao.linha < 0 || posicao.linha >= linhas || posicao.coluna < 0 || posicao.coluna >= this.colunas)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        // Método para validar a posição e retornar uma exception caso for inválida.
+        public void validarPosicao(Posicao posicao)
+        {
+            if (!posicaoValida(posicao))
+            {
+                throw new TabuleiroException("Posição Inválida!");
+            }
         }
     }
 }
