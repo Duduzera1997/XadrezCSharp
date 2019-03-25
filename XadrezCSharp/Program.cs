@@ -10,21 +10,13 @@ namespace XadrezCSharp
         // Método Main;
         static void Main(string[] args)
         {
-            // Cláusula Try Catch para tratar exceções;
-            try {
-                // Instanciando um Tabuleiro de 8 linhas e 8 colunas.
-                Tabuleiro tab = new Tabuleiro(8, 8);
 
-                tab.colocarPeca(new Torre(tab, Cor.Black), new Posicao(0, 0));
-                tab.colocarPeca(new Torre(tab, Cor.Black), new Posicao(1, 3));
-                tab.colocarPeca(new Rei(tab, Cor.Black), new Posicao(0, 2));
+            // Testando o posicionamento correto do xadrez.
+            PosicaoXadrez posicao = new PosicaoXadrez('a', 1);
 
-                // Usando um Método static da classe Tela;
-                Tela.imprimirTabuleiro(tab);
+            Console.WriteLine(posicao);
 
-            } catch (TabuleiroException e) {
-                Console.WriteLine(e.Message);
-            }
+            Console.WriteLine(posicao.converterPosicao());
 
             Console.ReadLine();
         }
