@@ -13,7 +13,8 @@ namespace XadrezCSharp
         {   
             //Loop pra percorrer linha a linha do tabuleiro;
             for (int i = 0; i < tabuleiro.linhas; i++)
-            {   
+            {
+                Console.Write(8 - i + " ");
                 //Loop pra percorrer coluna a coluna do tabuleiro;
                 for (int j = 0; j < tabuleiro.colunas; j++) {
                     
@@ -22,13 +23,29 @@ namespace XadrezCSharp
                         Console.Write("- ");
                     }
                     else {
-                        Console.Write(tabuleiro.peca(i, j) + " ");
+                       imprimirPeca(tabuleiro.peca(i, j));
+                        Console.Write(" ");
                     }
                     
 
                 }
                 //Quebrar a linha e montar a estrutura correta do tabuleiro;
                 Console.WriteLine();
+            }
+            Console.WriteLine("  A B C D E F G H");
+        }
+
+        // Método pra inserir cores nas peças;
+        public static void imprimirPeca(Peca peca)
+        {
+            if (peca.cor == Cor.White) {
+                Console.Write(peca);
+            } else {
+                ConsoleColor aux = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write(peca);
+                Console.ForegroundColor = aux;
+
             }
         }
 
