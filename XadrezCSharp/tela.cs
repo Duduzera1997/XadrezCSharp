@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using tabuleiro;
+using xadrez;
 
 namespace XadrezCSharp
 {
@@ -33,6 +32,15 @@ namespace XadrezCSharp
                 Console.WriteLine();
             }
             Console.WriteLine("  A B C D E F G H");
+        }
+
+        // Método pra ler a posição do xadrez;
+        public static PosicaoXadrez lerPosicaoXadrez()
+        {
+            string s = Console.ReadLine();
+            char coluna = s[0];
+            int linha= int.Parse(s[1] + "");
+            return new PosicaoXadrez(coluna, linha);
         }
 
         // Método pra inserir cores nas peças;

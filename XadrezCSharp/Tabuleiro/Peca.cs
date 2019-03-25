@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace tabuleiro
 {
     class Peca
@@ -20,6 +17,12 @@ namespace tabuleiro
             this.tabuleiro = tabuleiro;
             this.cor = cor;
             this.qtdMovimentos = 0;
+        }
+
+        // Método para incrementar a quantidade de movimentos do jogador;
+        public void incrementarQtdMovimentos()
+        {
+            this.qtdMovimentos++;
         }
     }
 }

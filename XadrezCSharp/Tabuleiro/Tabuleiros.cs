@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using exceptions;
+﻿using exceptions;
 
 namespace tabuleiro
 {
@@ -49,6 +46,18 @@ namespace tabuleiro
             }
             pecas[posicao.linha, posicao.coluna] = peca;
             peca.posicao = posicao;
+        }
+
+        //Método pra retirar uma Peça do Tabuleiro;
+        public Peca retirarPeca(Posicao posicao)
+        {
+            if (peca(posicao) == null) {
+                return null;
+            }
+            Peca aux = peca(posicao);
+            aux.posicao = null;
+            pecas[posicao.linha, posicao.coluna] = null;
+            return aux;
         }
 
         // Método para verificar se a posição informada é válida de acordo com o tamanho do tabuleiro.
