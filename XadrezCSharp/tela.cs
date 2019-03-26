@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using tabuleiro;
 using xadrez;
 
@@ -21,6 +22,39 @@ namespace XadrezCSharp
                 Console.WriteLine();
             }
             Console.WriteLine("  A B C D E F G H");
+        }
+
+        public static void imprimirPartida(Partida partida)
+        {
+            Tela.imprimirTabuleiro(partida.tabuleiro);
+            Console.WriteLine();
+            imprimirPecasCapturadas(partida);
+            Console.WriteLine("Turno: " + partida.turno);
+            Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
+        }
+
+        public static void imprimirPecasCapturadas(Partida partida)
+        {
+            Console.WriteLine("Peças Capturadas: ");
+            Console.Write("Brancas: ");
+            imprimirConjunto(partida.pecasCapturadas(Cor.Branca));
+            Console.WriteLine();
+            Console.Write("Pretas: ");
+            ConsoleColor auxiliar = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red;
+            imprimirConjunto(partida.pecasCapturadas(Cor.Preta));
+            Console.ForegroundColor = auxiliar;
+            Console.WriteLine();
+        }
+
+        public static void imprimirConjunto(HashSet<Peca> conjunto)
+        {
+            Console.Write("[");
+            foreach (Peca p in conjunto) {
+                Console.Write(p + ", ");
+
+            }
+            Console.Write("]");
         }
 
         // Sobrecarga para pintar o fundo com as possíveis posições de movimento daquela peça;
@@ -69,7 +103,7 @@ namespace XadrezCSharp
                     Console.Write(peca);
                 } else {
                     ConsoleColor aux = Console.ForegroundColor;
-                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write(peca);
                     Console.ForegroundColor = aux;
 

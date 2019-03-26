@@ -19,10 +19,7 @@ namespace XadrezCSharp
                     try {
                         Console.Clear();
                         // Usando um Método static da classe Tela;
-                        Tela.imprimirTabuleiro(partida.tabuleiro);
-                        Console.WriteLine();
-                        Console.WriteLine("Turno: " + partida.turno);
-                        Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
+                        Tela.imprimirPartida(partida);
 
                         Console.WriteLine();
                         Console.Write("Origem: ");
