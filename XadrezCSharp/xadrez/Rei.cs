@@ -18,12 +18,15 @@ namespace xadrez
             return "R";
         }
 
+        // Método para verificar se é possivel mover para aquela posição;
         private bool podeMover(Posicao posicao)
         {
             Peca p = tabuleiro.peca(posicao);
             return p == null || p.cor != this.cor;
         }
 
+
+        // Sobreposição;
         public override bool[,] movimentosPossiveis()
         {
             bool[,] mat = new bool[tabuleiro.linhas, tabuleiro.colunas];

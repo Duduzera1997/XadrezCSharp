@@ -24,6 +24,8 @@ namespace XadrezCSharp
             Console.WriteLine("  A B C D E F G H");
         }
 
+        
+        // Método para imprimir Partida;
         public static void imprimirPartida(Partida partida)
         {
             Tela.imprimirTabuleiro(partida.tabuleiro);
@@ -31,8 +33,14 @@ namespace XadrezCSharp
             imprimirPecasCapturadas(partida);
             Console.WriteLine("Turno: " + partida.turno);
             Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
+
+            if (partida.xeque)
+            {
+                Console.WriteLine("Xeque!");
+            }
         }
 
+        // Método para imprimir as peças capturadas;
         public static void imprimirPecasCapturadas(Partida partida)
         {
             Console.WriteLine("Peças Capturadas: ");
@@ -47,6 +55,7 @@ namespace XadrezCSharp
             Console.WriteLine();
         }
 
+        // Método para imprimir um conjunto de peças dentro de colchetes;
         public static void imprimirConjunto(HashSet<Peca> conjunto)
         {
             Console.Write("[");

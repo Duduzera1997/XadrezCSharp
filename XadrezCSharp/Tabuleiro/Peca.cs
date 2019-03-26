@@ -25,6 +25,12 @@ namespace tabuleiro
             this.qtdMovimentos++;
         }
 
+        // Método para decrementar a quantidade de movimentos do jogador;
+        public void decrementarQtdMovimentos()
+        {
+            this.qtdMovimentos--;
+        }
+
         // Método pra verificar se existe movimentos possíveis pra determinada peça.
         public bool existeMovimentosPossiveis()
         {
