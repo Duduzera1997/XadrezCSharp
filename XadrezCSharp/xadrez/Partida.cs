@@ -71,13 +71,21 @@ namespace xadrez
             if (verificarXeque(verificarAdversario(jogadorAtual)))
             {
                 this.xeque = true;
-            } else
+            }
+            else
             {
                 this.xeque = false;
             }
 
-            turno++;
-            mudarJogador();
+            if (verificarXequeMate(verificarAdversario(jogadorAtual)))
+            {
+                this.terminada = true;
+            }
+            else
+            {
+                turno++;
+                mudarJogador();
+            }
         }
 
         // Método para validar todas as possiveis exceções ao selecionar uma peça de origem;
@@ -197,6 +205,40 @@ namespace xadrez
                 }
             }
             return false;
+        }
+
+        // Método para verificar se o jogador daquela cor está em Xeque Mate;
+        public bool verificarXequeMate(Cor cor)
+        {
+            if (!verificarXeque(cor))
+            {
+                return false;
+            }
+
+            foreach (Peca p in pecasEmJogo(cor))
+            {
+                bool[,] mat = p.movimentosPossiveis();
+                for (int i = 0; i < tabuleiro.linhas; i++)
+                {
+                    for (int j = 0; j < tabuleiro.colunas; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Posicao origem = p.posicao;
+                            Posicao destino = new Posicao(i, j);
+                            Peca pecaCapturada = executarMovimento(origem, destino);
+                            bool testeXeque = verificarXeque(cor);
+                            desfazerMovimento(origem, destino, pecaCapturada);
+                            if (!testeXeque)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return true;
         }
 
         // Método pra inserir uma nova peça no tabuleiro;

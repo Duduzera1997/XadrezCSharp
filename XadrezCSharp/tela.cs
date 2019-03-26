@@ -28,15 +28,23 @@ namespace XadrezCSharp
         // Método para imprimir Partida;
         public static void imprimirPartida(Partida partida)
         {
-            Tela.imprimirTabuleiro(partida.tabuleiro);
+            imprimirTabuleiro(partida.tabuleiro);
             Console.WriteLine();
             imprimirPecasCapturadas(partida);
             Console.WriteLine("Turno: " + partida.turno);
-            Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
 
-            if (partida.xeque)
+            if (!partida.terminada)
             {
-                Console.WriteLine("Xeque!");
+                Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
+
+                if (partida.xeque)
+                {
+                    Console.WriteLine("Xeque!");
+                }
+            } else
+            {
+                Console.WriteLine("XEQUEMATE!");
+                Console.WriteLine("Vencedor: " + partida.jogadorAtual);
             }
         }
 
