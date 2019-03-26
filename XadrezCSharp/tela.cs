@@ -65,7 +65,7 @@ namespace XadrezCSharp
             if (peca == null) {
                 Console.Write("- ");
             } else {
-                if (peca.cor == Cor.White) {
+                if (peca.cor == Cor.Branca) {
                     Console.Write(peca);
                 } else {
                     ConsoleColor aux = Console.ForegroundColor;

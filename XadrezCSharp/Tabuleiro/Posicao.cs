@@ -19,6 +19,7 @@ namespace tabuleiro
             this.coluna = coluna;
         }
 
+        // Define o valores das linhas e colunas;
         public void definirValores(int linha, int coluna)
         {
             this.linha = linha;
