@@ -13,7 +13,7 @@ namespace xadrez
         }
 
         // Método para verificar se é possivel mover para aquela posição;
-        public bool podeMover(Posicao pos)
+        public bool novimentoPossivel(Posicao pos)
         {
             Peca p = tabuleiro.peca(pos);
             return p == null || p.cor != this.cor;
@@ -28,7 +28,7 @@ namespace xadrez
 
             // Acima
             pos.definirValores(posicao.linha - 1, posicao.coluna);
-            while (tabuleiro.posicaoValida(pos) && podeMover(pos)) {
+            while (tabuleiro.posicaoValida(pos) && novimentoPossivel(pos)) {
                 mat[pos.linha, pos.coluna] = true;
                 if (tabuleiro.peca(pos) != null && tabuleiro.peca(pos).cor != cor) {
                     break;
@@ -38,7 +38,7 @@ namespace xadrez
 
             // Abaixo
             pos.definirValores(posicao.linha + 1, posicao.coluna);
-            while (tabuleiro.posicaoValida(pos) && podeMover(pos)) {
+            while (tabuleiro.posicaoValida(pos) && novimentoPossivel(pos)) {
                 mat[pos.linha, pos.coluna] = true;
                 if (tabuleiro.peca(pos) != null && tabuleiro.peca(pos).cor != cor) {
                     break;
@@ -48,7 +48,7 @@ namespace xadrez
 
             // Direita
             pos.definirValores(posicao.linha, posicao.coluna + 1);
-            while (tabuleiro.posicaoValida(pos) && podeMover(pos)) {
+            while (tabuleiro.posicaoValida(pos) && novimentoPossivel(pos)) {
                 mat[pos.linha, pos.coluna] = true;
                 if (tabuleiro.peca(pos) != null && tabuleiro.peca(pos).cor != cor) {
                     break;
@@ -58,7 +58,7 @@ namespace xadrez
 
             // Esquerda
             pos.definirValores(posicao.linha, posicao.coluna - 1);
-            while (tabuleiro.posicaoValida(pos) && podeMover(pos)) {
+            while (tabuleiro.posicaoValida(pos) && novimentoPossivel(pos)) {
                 mat[pos.linha, pos.coluna] = true;
                 if (tabuleiro.peca(pos) != null && tabuleiro.peca(pos).cor != cor) {
                     break;

@@ -19,7 +19,7 @@ namespace xadrez
         }
 
         // Método para verificar se é possivel mover para aquela posição;
-        private bool podeMover(Posicao posicao)
+        private bool novimentoPossivel(Posicao posicao)
         {
             Peca p = tabuleiro.peca(posicao);
             return p == null || p.cor != this.cor;
@@ -35,42 +35,42 @@ namespace xadrez
 
             // Acima
             pos.definirValores(posicao.linha - 1, posicao.coluna);
-            if (tabuleiro.posicaoValida(pos) && podeMover(pos)) {
+            if (tabuleiro.posicaoValida(pos) && novimentoPossivel(pos)) {
                 mat[pos.linha, pos.coluna] = true;
             }
             // Nordeste
             pos.definirValores(posicao.linha - 1, posicao.coluna + 1);
-            if (tabuleiro.posicaoValida(pos) && podeMover(pos)) {
+            if (tabuleiro.posicaoValida(pos) && novimentoPossivel(pos)) {
                 mat[pos.linha, pos.coluna] = true;
             }
             // Direita
             pos.definirValores(posicao.linha, posicao.coluna + 1);
-            if (tabuleiro.posicaoValida(pos) && podeMover(pos)) {
+            if (tabuleiro.posicaoValida(pos) && novimentoPossivel(pos)) {
                 mat[pos.linha, pos.coluna] = true;
             }
             // Sudeste
             pos.definirValores(posicao.linha + 1, posicao.coluna + 1);
-            if (tabuleiro.posicaoValida(pos) && podeMover(pos)) {
+            if (tabuleiro.posicaoValida(pos) && novimentoPossivel(pos)) {
                 mat[pos.linha, pos.coluna] = true;
             }
             // Abaixo
             pos.definirValores(posicao.linha + 1, posicao.coluna);
-            if (tabuleiro.posicaoValida(pos) && podeMover(pos)) {
+            if (tabuleiro.posicaoValida(pos) && novimentoPossivel(pos)) {
                 mat[pos.linha, pos.coluna] = true;
             }
             // Sudoeste
             pos.definirValores(posicao.linha + 1, posicao.coluna - 1);
-            if (tabuleiro.posicaoValida(pos) && podeMover(pos)) {
+            if (tabuleiro.posicaoValida(pos) && novimentoPossivel(pos)) {
                 mat[pos.linha, pos.coluna] = true;
             }
             // Esquerda
             pos.definirValores(posicao.linha, posicao.coluna - 1);
-            if (tabuleiro.posicaoValida(pos) && podeMover(pos)) {
+            if (tabuleiro.posicaoValida(pos) && novimentoPossivel(pos)) {
                 mat[pos.linha, pos.coluna] = true;
             }
             // Nordeste
             pos.definirValores(posicao.linha - 1, posicao.coluna - 1);
-            if (tabuleiro.posicaoValida(pos) && podeMover(pos)) {
+            if (tabuleiro.posicaoValida(pos) && novimentoPossivel(pos)) {
                 mat[pos.linha, pos.coluna] = true;
             }
 
