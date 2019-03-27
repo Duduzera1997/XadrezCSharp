@@ -14,6 +14,7 @@ namespace xadrez
         private HashSet<Peca> pecas;
         private HashSet<Peca> capturadas;
         public bool xeque { get; private set; }
+        public Peca pecaVulneravelEnPassant { get; private set; }
 
 
         // Construtor;
@@ -27,6 +28,7 @@ namespace xadrez
             pecas = new HashSet<Peca>();
             capturadas = new HashSet<Peca>();
             this.colocarPecas();
+            pecaVulneravelEnPassant = null;
         }
 
         // Método pra executar o movimento da peça no tabuleiro;
@@ -61,7 +63,25 @@ namespace xadrez
                 tabuleiro.colocarPeca(t, destinoTorre);
             }
 
+            // Jogada especial En Psasant;
+            if (peca is Peao)
+            {
+                if (origem.coluna != destino.coluna && pecaCapturada == null)
+                {
+                    Posicao posicaoPeao;
 
+                    if (peca.cor == Cor.Branca)
+                    {
+                        posicaoPeao = new Posicao(destino.linha + 1, destino.coluna);
+                    }
+                    else
+                    {
+                        posicaoPeao = new Posicao(destino.linha - 1, destino.coluna);
+                    }
+                    pecaCapturada = tabuleiro.retirarPeca(posicaoPeao);
+                    capturadas.Add(pecaCapturada);
+                }
+            }
 
             return pecaCapturada;
         }
@@ -98,6 +118,27 @@ namespace xadrez
                 t.decrementarQtdMovimentos();
                 tabuleiro.colocarPeca(t, destinoTorre);
             }
+
+            // Jogada especial En Passant;
+
+            if (p is Peao)
+            {
+                if (origem.coluna != destino.coluna && pecaCapturada == pecaVulneravelEnPassant)
+                {
+                    Peca peao = tabuleiro.retirarPeca(destino);
+                    Posicao posicaoPeao;
+
+                    if (p.cor == Cor.Branca)
+                    {
+                        posicaoPeao = new Posicao(3, destino.coluna);
+                    }
+                    else
+                    {
+                        posicaoPeao = new Posicao(4, destino.coluna);
+                    }
+                    tabuleiro.colocarPeca(peao, posicaoPeao);
+                }
+            }
         }
 
         // Método pra realizar jogada, incrementar o turno e mudar o jogador.
@@ -127,6 +168,17 @@ namespace xadrez
             {
                 turno++;
                 mudarJogador();
+            }
+
+            Peca p = tabuleiro.peca(destino);
+
+            // Jogada Especial En Passant;
+            if (p is Peao &&(destino.linha == origem.linha -2 || destino.linha == origem.linha + 2))
+            {
+                pecaVulneravelEnPassant = p;
+            } else
+            {
+                pecaVulneravelEnPassant = null;
             }
         }
 
