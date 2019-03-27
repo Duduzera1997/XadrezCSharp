@@ -1,7 +1,7 @@
 ﻿using tabuleiro;
 using xadrez;
 
-namespace XadrezCSharp.xadrez
+namespace xadrez
 {
     class Bispo : Peca
     {
